@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Vérification avant calcul
-                if(eValeur1.getText().toString().matches("") || eValeur1.getText().toString().matches("")){
-                    Toast.makeText(getApplicationContext(),"Veuillez entrer tout les champs svp",Toast.LENGTH_SHORT).show();
+                if(eValeur1.getText().toString().matches("") || eValeur2.getText().toString().matches("")){
+                    Toast.makeText(getApplicationContext(),"Veuillez entrer tous les champs svp",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else{
@@ -117,6 +117,10 @@ public class MainActivity extends AppCompatActivity {
 
                 eValeur1.setText(null);
                 eValeur2.setText(null);
+                plus.setChecked(false);
+                moins.setChecked(false);
+                mult.setChecked(false);
+                div.setChecked(false);
                 vResultat.setText("Résultat");
 
             }
