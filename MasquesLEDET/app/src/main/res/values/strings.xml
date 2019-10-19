@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MasquesLEDET</string>
+    <string name="name">Name</string>
+    <string name="firstname">First name</string>
+    <string name="phoneNumber">Phone number</string>
+    <string name="numberAddress">Address number</string>
+    <string name="streetName">Street name</string>
+    <string name="postalCode">Postal Code</string>
+    <string name="city">City</string>
+</resources>
