@@ -29,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView vVie;
     private TextView result;
     private TextView nbPiece;
+    private String idButton;
 
+    private Button button;
     private Button button1;
     private Button button2;
     private Button button3;
@@ -103,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
     // Fonction de gestion d'entrée dans une salle
     public void onClick(View v){
 
+            button = findViewById(v.getId());
+            if(button.getText().toString().matches("X")){
+                Toast.makeText(MainActivity.this, "Boss déjà vaincu !", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String getRoom = getResources().getResourceEntryName(v.getId()); //On récupère le nom de l'ID : room+"i"
             char last = getRoom.charAt(getRoom.length()-1);                  //On récupère le numéro de la pièce: "i"
             int index = Character.getNumericValue(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
@@ -114,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("life", vVie.getText().toString());
             intent.putExtra("res", result.getText().toString());
             intent.putExtra("nbPiece", nbPiece.getText().toString());
+            intent.putExtra("idButton", Integer.toString(v.getId()));
             intent.putExtra("powerEnnemis", powerList.get(index).toString()); //On récupère la puissance de l'adversaire dans la powerList
             startActivityForResult(intent, FIGHT);
     }
@@ -154,6 +163,12 @@ public class MainActivity extends AppCompatActivity {
             vVie.setText(data.getStringExtra("rLife"));
             result.setText(data.getStringExtra("rRes"));
             nbPiece.setText(data.getStringExtra("rNbPiece"));
+            idButton = data.getStringExtra("rIdButton");
+            
+            if(result.getText().toString().matches("VICTOIRE !!!")){
+                button = findViewById(Integer.parseInt(idButton));
+                button.setText("X");
+            }
         }
     }
 }

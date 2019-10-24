@@ -17,6 +17,7 @@ public class FightActivity extends AppCompatActivity {
     private TextView vVie;
     private String result;
     private String nbPiece;
+    private String idButton;
     private TextView vPowerEnnemis;
 
     private Button attaqueButton;
@@ -38,6 +39,7 @@ public class FightActivity extends AppCompatActivity {
         vVie.setText(data.getStringExtra("life"));
         result = data.getStringExtra("res");
         nbPiece = data.getStringExtra("nbPiece");
+        idButton = data.getStringExtra("idButton");
         vPowerEnnemis.setText(data.getStringExtra("powerEnnemis"));
 
         attaqueButton.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +50,7 @@ public class FightActivity extends AppCompatActivity {
                 rand = new Random();
                 int randa = rand.nextInt(1 - 0 + 1) + 0;
                 int res = Integer.parseInt(vPuissance.getText().toString())*randj - Integer.parseInt(vPowerEnnemis.getText().toString())*randa;
-                if(res>=0){
+                if(res>=0){ //Cas de victoire
                     result = "VICTOIRE !!!";
                     int puissance = Integer.parseInt(vPuissance.getText().toString());
                     puissance += 10;
@@ -58,7 +60,7 @@ public class FightActivity extends AppCompatActivity {
                     nb -= 1;
                     nbPiece = Integer.toString(nb);
 
-                }else{
+                }else{ //Cas de défaite
 
                     int vie = Integer.parseInt(vVie.getText().toString());
                     vie -= 3;
@@ -72,6 +74,7 @@ public class FightActivity extends AppCompatActivity {
                 intent.putExtra("rLife", vVie.getText().toString());
                 intent.putExtra("rRes", result);
                 intent.putExtra("rNbPiece", nbPiece);
+                intent.putExtra("rIdButton", idButton);
                 setResult(Activity.RESULT_OK,intent);
                 finish();
 
