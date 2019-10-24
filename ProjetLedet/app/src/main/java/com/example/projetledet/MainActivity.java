@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
             result.setText(data.getStringExtra("rRes"));
             nbPiece.setText(data.getStringExtra("rNbPiece"));
             idButton = data.getStringExtra("rIdButton");
-            
+
             if(result.getText().toString().matches("VICTOIRE !!!")){
                 button = findViewById(Integer.parseInt(idButton));
                 button.setText("X");
