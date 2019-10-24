@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,26 +33,31 @@
                 android:id="@+id/room1"
                 android:text="@string/room1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Button>
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
+            </Button>
             <Button
                 android:id="@+id/room2"
                 android:text="@string/room2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room3"
                 android:text="@string/room3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room4"
                 android:text="@string/room4"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
         </LinearLayout>
 
@@ -65,26 +71,31 @@
                 android:id="@+id/room5"
                 android:text="@string/room5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Button>
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
+            </Button>
             <Button
                 android:id="@+id/room6"
                 android:text="@string/room6"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room7"
                 android:text="@string/room7"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room8"
                 android:text="@string/room8"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
         </LinearLayout>
 
@@ -98,26 +109,31 @@
                 android:id="@+id/room9"
                 android:text="@string/room9"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Button>
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
+            </Button>
             <Button
                 android:id="@+id/room10"
                 android:text="@string/room10"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room11"
                 android:text="@string/room11"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room12"
                 android:text="@string/room12"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
         </LinearLayout>
 
@@ -131,26 +147,31 @@
                 android:id="@+id/room13"
                 android:text="@string/room13"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></Button>
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
+            </Button>
             <Button
                 android:id="@+id/room14"
                 android:text="@string/room14"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room15"
                 android:text="@string/room15"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
 
             <Button
                 android:id="@+id/room16"
                 android:text="@string/room16"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:onClick="onClick">
             </Button>
         </LinearLayout>
     </LinearLayout>

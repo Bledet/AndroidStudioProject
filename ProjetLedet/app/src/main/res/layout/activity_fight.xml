@@ -39,6 +39,7 @@
                     android:gravity="center"/>
 
                 <TextView
+                    android:id="@+id/fpuissance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/puissance"
@@ -58,6 +59,7 @@
                     android:text="Points de vie" />
 
                 <TextView
+                    android:id="@+id/fvie"
                     android:layout_width="46dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -93,6 +95,7 @@
             android:gravity="center"/>
 
         <TextView
+            android:id="@+id/puissance_adverse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/puissance_adversaire"
@@ -106,14 +109,16 @@
         android:layout_weight="1">
 
         <Button
+            android:id="@+id/attaqueButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="25dp"
             android:text="Attaque"/>
         <Button
+            android:id="@+id/fuiteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginleft="25dp"
+            android:layout_marginLeft="25dp"
             android:text="FUITE"/>
     </LinearLayout>
 
