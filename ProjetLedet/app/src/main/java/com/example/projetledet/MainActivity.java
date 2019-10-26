@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView vVie;
     private TextView result;
     private TextView nbPiece;
+    private TextView vResPartie;
     private String idButton;
 
     private Button button;
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         vVie = (TextView) findViewById(R.id.vie);
         result = (TextView) findViewById(R.id.resultat_combat);
         nbPiece = (TextView) findViewById(R.id.piece_non_explorer);
+        vResPartie = (TextView) findViewById(R.id.res_partie);
 
         button1 = (Button) findViewById(R.id.room1);
         button2 = (Button) findViewById(R.id.room2);
@@ -154,7 +156,10 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_CANCELED) {
-            Toast.makeText(MainActivity.this, "Cancelled.", Toast.LENGTH_SHORT).show();
+            int vie = Integer.parseInt(vVie.getText().toString());
+            vie -= 1;
+            vVie.setText(Integer.toString(vie));
+            result.setText("Vous avez pris la fuite...");
             return;
         }
 
@@ -169,6 +174,17 @@ public class MainActivity extends AppCompatActivity {
                 button = findViewById(Integer.parseInt(idButton));
                 button.setText("X");
             }
+        }
+        checkVictory();
+    }
+
+    private void checkVictory(){
+        int vie = Integer.parseInt(vVie.getText().toString());
+        int piece = Integer.parseInt(nbPiece.getText().toString());
+        if(vie <=0){
+            vResPartie.setText("Vous avez perdu la partie.");
+        }else if (piece == 0){
+            vResPartie.setText("Bravo ! Vous avez gagné !");
         }
     }
 }

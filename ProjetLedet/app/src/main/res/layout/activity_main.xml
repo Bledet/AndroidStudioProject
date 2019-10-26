@@ -234,9 +234,10 @@
         </LinearLayout>
     </LinearLayout>
     <TextView
+        android:id="@+id/res_partie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Résultat du combat"
+        android:text="@string/res_partie"
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_weight="1"

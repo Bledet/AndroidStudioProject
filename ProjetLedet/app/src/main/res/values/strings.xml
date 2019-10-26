@@ -5,6 +5,7 @@
     <string name="vie">10</string>
     <string name="resultat_combat">...</string>
     <string name="puissance_adversaire">Alea 1-150</string>
+    <string name="res_partie">Résultat du combat</string>
     <string name="room1">01</string>
     <string name="room2">02</string>
     <string name="room3">03</string>

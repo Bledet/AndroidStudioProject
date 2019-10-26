@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/inverse_colors"
+        android:title="Négatif"></item>
+    <item android:id="@+id/grey_level"
+        android:title="Niveau de gris"></item>
+    <item android:id="@+id/grey_level_2"
+        android:title="Niveau de gris 2"></item>
+    <item android:id="@+id/grey_level_3"
+        android:title="Niveau de gris 3"></item>
+</menu>

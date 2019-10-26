@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/fhrzt"
+        android:title="Flip Horizontal" />
+    <item
+        android:id="@+id/fvert"
+        android:title="Flip Verticale" />
+    <item
+        android:id="@+id/fhoraire"
+        android:title="Flip Horaire" />
+    <item
+        android:id="@+id/fantihoraire"
+        android:title="Flip Antihoraire" />
+</menu>
