@@ -15,15 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
-import java.util.List;
 import java.util.Random;
 import java.util.Vector;
 
-import static java.lang.Math.random;
-
 public class MainActivity extends AppCompatActivity {
-
 
     private TextView vPuissance;
     private TextView vVie;
@@ -56,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     Vector powerList = new Vector();
 
     private void initList(){
-
         for(int i=0; i<16; i++){
 
             Random rand = new Random();
@@ -65,7 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
             powerList.add(power);
         }
+    }
 
+    private void reInitList(){
+        powerList.clear();
+        initList();
     }
 
     @Override
@@ -74,10 +72,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initList();
-
-        for(int i=0; i<powerList.size(); i++){
-            System.out.println("Case"+i+" : " + powerList.get(i));
-        }
 
         vPuissance = (TextView) findViewById(R.id.puissance);
         vVie = (TextView) findViewById(R.id.vie);
@@ -119,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
             String getRoom = getResources().getResourceEntryName(v.getId()); //On récupère le nom de l'ID : room+"i"
             String last = getRoom.substring(4);                  //On récupère le numéro de la pièce: "i"
             int index = Integer.parseInt(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
-
 
             Intent intent = new Intent(MainActivity.this, FightActivity.class);
             intent.putExtra("power", vPuissance.getText().toString());
@@ -196,6 +189,8 @@ public class MainActivity extends AppCompatActivity {
         result.setText("...");
         nbPiece.setText("16");
         vResPartie.setText("Résultat du combat");
+
+        reInitList();
 
         button1.setText("01");
         button2.setText("02");
