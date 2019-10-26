@@ -85,15 +85,15 @@ public class MainActivity extends AppCompatActivity {
         nbPiece = (TextView) findViewById(R.id.piece_non_explorer);
         vResPartie = (TextView) findViewById(R.id.res_partie);
 
-        button1 = (Button) findViewById(R.id.room1);
-        button2 = (Button) findViewById(R.id.room2);
-        button3 = (Button) findViewById(R.id.room3);
-        button4 = (Button) findViewById(R.id.room4);
-        button5 = (Button) findViewById(R.id.room5);
-        button6 = (Button) findViewById(R.id.room6);
-        button7 = (Button) findViewById(R.id.room7);
-        button8 = (Button) findViewById(R.id.room8);
-        button9 = (Button) findViewById(R.id.room9);
+        button1 = (Button) findViewById(R.id.room01);
+        button2 = (Button) findViewById(R.id.room02);
+        button3 = (Button) findViewById(R.id.room03);
+        button4 = (Button) findViewById(R.id.room04);
+        button5 = (Button) findViewById(R.id.room05);
+        button6 = (Button) findViewById(R.id.room06);
+        button7 = (Button) findViewById(R.id.room07);
+        button8 = (Button) findViewById(R.id.room08);
+        button9 = (Button) findViewById(R.id.room09);
         button10 = (Button) findViewById(R.id.room10);
         button11 = (Button) findViewById(R.id.room11);
         button12 = (Button) findViewById(R.id.room12);
@@ -111,13 +111,15 @@ public class MainActivity extends AppCompatActivity {
             if(button.getText().toString().matches("X")){
                 Toast.makeText(MainActivity.this, "Boss déjà vaincu !", Toast.LENGTH_SHORT).show();
                 return;
+            }else if(!vResPartie.getText().toString().matches("Résultat du combat")){
+                Toast.makeText(MainActivity.this, "Veuillez recommencer une partie.", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             String getRoom = getResources().getResourceEntryName(v.getId()); //On récupère le nom de l'ID : room+"i"
-            char last = getRoom.charAt(getRoom.length()-1);                  //On récupère le numéro de la pièce: "i"
-            int index = Character.getNumericValue(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
+            String last = getRoom.substring(4);                  //On récupère le numéro de la pièce: "i"
+            int index = Integer.parseInt(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
 
-            System.out.println("IDENTITEEEEEEEEEE :" + last);
 
             Intent intent = new Intent(MainActivity.this, FightActivity.class);
             intent.putExtra("power", vPuissance.getText().toString());
@@ -141,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.redemarrer:
-                //TODO New Game
+                restart();
                 return true;
             case R.id.quitter:
                 finish();
@@ -186,5 +188,30 @@ public class MainActivity extends AppCompatActivity {
         }else if (piece == 0){
             vResPartie.setText("Bravo ! Vous avez gagné !");
         }
+    }
+
+    private void restart(){
+        vPuissance.setText("100");
+        vVie.setText("10");
+        result.setText("...");
+        nbPiece.setText("16");
+        vResPartie.setText("Résultat du combat");
+
+        button1.setText("01");
+        button2.setText("02");
+        button3.setText("03");
+        button4.setText("04");
+        button5.setText("05");
+        button6.setText("06");
+        button7.setText("07");
+        button8.setText("08");
+        button9.setText("09");
+        button10.setText("10");
+        button11.setText("11");
+        button12.setText("12");
+        button13.setText("13");
+        button14.setText("14");
+        button15.setText("15");
+        button16.setText("16");
     }
 }

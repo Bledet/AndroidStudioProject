@@ -30,14 +30,14 @@
             android:layout_gravity="center">
 
             <Button
-                android:id="@+id/room1"
+                android:id="@+id/room01"
                 android:text="@string/room1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick">
             </Button>
             <Button
-                android:id="@+id/room2"
+                android:id="@+id/room02"
                 android:text="@string/room2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             </Button>
 
             <Button
-                android:id="@+id/room3"
+                android:id="@+id/room03"
                 android:text="@string/room3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
             </Button>
 
             <Button
-                android:id="@+id/room4"
+                android:id="@+id/room04"
                 android:text="@string/room4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,14 +68,14 @@
             android:layout_gravity="center">
 
             <Button
-                android:id="@+id/room5"
+                android:id="@+id/room05"
                 android:text="@string/room5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClick">
             </Button>
             <Button
-                android:id="@+id/room6"
+                android:id="@+id/room06"
                 android:text="@string/room6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,7 +83,7 @@
             </Button>
 
             <Button
-                android:id="@+id/room7"
+                android:id="@+id/room07"
                 android:text="@string/room7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             </Button>
 
             <Button
-                android:id="@+id/room8"
+                android:id="@+id/room08"
                 android:text="@string/room8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +106,7 @@
             android:layout_gravity="center">
 
             <Button
-                android:id="@+id/room9"
+                android:id="@+id/room09"
                 android:text="@string/room9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
