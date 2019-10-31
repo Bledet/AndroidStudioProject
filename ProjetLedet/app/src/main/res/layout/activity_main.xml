@@ -29,36 +29,52 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
 
-            <Button
+            <ImageButton
                 android:id="@+id/room01"
                 android:text="@string/room1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
-            <Button
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/room02"
                 android:text="@string/room2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room03"
                 android:text="@string/room3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room04"
                 android:text="@string/room4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
         </LinearLayout>
 
         <LinearLayout
@@ -67,36 +83,52 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
 
-            <Button
+            <ImageButton
                 android:id="@+id/room05"
                 android:text="@string/room5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
-            <Button
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/room06"
                 android:text="@string/room6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room07"
                 android:text="@string/room7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room08"
                 android:text="@string/room8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
         </LinearLayout>
 
         <LinearLayout
@@ -105,36 +137,52 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
 
-            <Button
+            <ImageButton
                 android:id="@+id/room09"
                 android:text="@string/room9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
-            <Button
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/room10"
                 android:text="@string/room10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room11"
                 android:text="@string/room11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room12"
                 android:text="@string/room12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
         </LinearLayout>
 
         <LinearLayout
@@ -143,36 +191,52 @@
             android:orientation="horizontal"
             android:layout_gravity="center">
 
-            <Button
+            <ImageButton
                 android:id="@+id/room13"
                 android:text="@string/room13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
-            <Button
+            </ImageButton>
+            <ImageButton
                 android:id="@+id/room14"
                 android:text="@string/room14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room15"
                 android:text="@string/room15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
 
-            <Button
+            <ImageButton
                 android:id="@+id/room16"
                 android:text="@string/room16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:src="@drawable/icon_inter"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="5dp"
+                android:background="@color/transparent"
+                android:scaleType="fitCenter"
                 android:onClick="onClick">
-            </Button>
+            </ImageButton>
         </LinearLayout>
     </LinearLayout>
 

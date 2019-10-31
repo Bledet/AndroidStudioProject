@@ -11,6 +11,7 @@ import android.view.View;
 import android.os.Bundle;
 import android.view.MenuInflater;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,23 +28,23 @@ public class MainActivity extends AppCompatActivity {
     private TextView vResPartie;
     private String idButton;
 
-    private Button button;
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private Button button5;
-    private Button button6;
-    private Button button7;
-    private Button button8;
-    private Button button9;
-    private Button button10;
-    private Button button11;
-    private Button button12;
-    private Button button13;
-    private Button button14;
-    private Button button15;
-    private Button button16;
+    private ImageButton button;
+    private ImageButton button1;
+    private ImageButton button2;
+    private ImageButton button3;
+    private ImageButton button4;
+    private ImageButton button5;
+    private ImageButton button6;
+    private ImageButton button7;
+    private ImageButton button8;
+    private ImageButton button9;
+    private ImageButton button10;
+    private ImageButton button11;
+    private ImageButton button12;
+    private ImageButton button13;
+    private ImageButton button14;
+    private ImageButton button15;
+    private ImageButton button16;
 
     public static final int FIGHT = 1;
 
@@ -79,22 +80,22 @@ public class MainActivity extends AppCompatActivity {
         nbPiece = (TextView) findViewById(R.id.piece_non_explorer);
         vResPartie = (TextView) findViewById(R.id.res_partie);
 
-        button1 = (Button) findViewById(R.id.room01);
-        button2 = (Button) findViewById(R.id.room02);
-        button3 = (Button) findViewById(R.id.room03);
-        button4 = (Button) findViewById(R.id.room04);
-        button5 = (Button) findViewById(R.id.room05);
-        button6 = (Button) findViewById(R.id.room06);
-        button7 = (Button) findViewById(R.id.room07);
-        button8 = (Button) findViewById(R.id.room08);
-        button9 = (Button) findViewById(R.id.room09);
-        button10 = (Button) findViewById(R.id.room10);
-        button11 = (Button) findViewById(R.id.room11);
-        button12 = (Button) findViewById(R.id.room12);
-        button13 = (Button) findViewById(R.id.room13);
-        button14 = (Button) findViewById(R.id.room14);
-        button15 = (Button) findViewById(R.id.room15);
-        button16 = (Button) findViewById(R.id.room16);
+        button1 = (ImageButton) findViewById(R.id.room01);
+        button2 = (ImageButton) findViewById(R.id.room02);
+        button3 = (ImageButton) findViewById(R.id.room03);
+        button4 = (ImageButton) findViewById(R.id.room04);
+        button5 = (ImageButton) findViewById(R.id.room05);
+        button6 = (ImageButton) findViewById(R.id.room06);
+        button7 = (ImageButton) findViewById(R.id.room07);
+        button8 = (ImageButton) findViewById(R.id.room08);
+        button9 = (ImageButton) findViewById(R.id.room09);
+        button10 = (ImageButton) findViewById(R.id.room10);
+        button11 = (ImageButton) findViewById(R.id.room11);
+        button12 = (ImageButton) findViewById(R.id.room12);
+        button13 = (ImageButton) findViewById(R.id.room13);
+        button14 = (ImageButton) findViewById(R.id.room14);
+        button15 = (ImageButton) findViewById(R.id.room15);
+        button16 = (ImageButton) findViewById(R.id.room16);
 
     }
 
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v){
 
             button = findViewById(v.getId());
-            if(button.getText().toString().matches("X")){
+            if(button.getTag() == "vaincu"){
                 Toast.makeText(MainActivity.this, "Boss déjà vaincu !", Toast.LENGTH_SHORT).show();
                 return;
             }else if(!vResPartie.getText().toString().matches("Résultat du combat")){
@@ -167,7 +168,8 @@ public class MainActivity extends AppCompatActivity {
 
             if(result.getText().toString().matches("VICTOIRE !!!")){
                 button = findViewById(Integer.parseInt(idButton));
-                button.setText("X");
+                button.setImageResource(R.drawable.icon_cross);
+                button.setTag("vaincu");
             }
         }
         checkVictory();
@@ -191,22 +193,40 @@ public class MainActivity extends AppCompatActivity {
         vResPartie.setText("Résultat du combat");
 
         reInitList();
+        int id = R.drawable.icon_inter;
 
-        button1.setText("01");
-        button2.setText("02");
-        button3.setText("03");
-        button4.setText("04");
-        button5.setText("05");
-        button6.setText("06");
-        button7.setText("07");
-        button8.setText("08");
-        button9.setText("09");
-        button10.setText("10");
-        button11.setText("11");
-        button12.setText("12");
-        button13.setText("13");
-        button14.setText("14");
-        button15.setText("15");
-        button16.setText("16");
+        button1.setImageResource(id);
+        button2.setImageResource(id);
+        button3.setImageResource(id);
+        button4.setImageResource(id);
+        button5.setImageResource(id);
+        button6.setImageResource(id);
+        button7.setImageResource(id);
+        button8.setImageResource(id);
+        button9.setImageResource(id);
+        button10.setImageResource(id);
+        button11.setImageResource(id);
+        button12.setImageResource(id);
+        button13.setImageResource(id);
+        button14.setImageResource(id);
+        button15.setImageResource(id);
+        button16.setImageResource(id);
+
+        button1.setTag("nop");
+        button2.setTag("nop");
+        button3.setTag("nop");
+        button4.setTag("nop");
+        button5.setTag("nop");
+        button6.setTag("nop");
+        button7.setTag("nop");
+        button8.setTag("nop");
+        button9.setTag("nop");
+        button10.setTag("nop");
+        button11.setTag("nop");
+        button12.setTag("nop");
+        button13.setTag("nop");
+        button14.setTag("nop");
+        button15.setTag("nop");
+        button16.setTag("nop");
     }
 }
