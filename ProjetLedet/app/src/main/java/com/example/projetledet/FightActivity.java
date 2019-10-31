@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,8 @@ public class FightActivity extends AppCompatActivity {
     private Button attaqueButton;
     private Button fuiteButton;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,8 @@ public class FightActivity extends AppCompatActivity {
         attaqueButton = (Button) findViewById(R.id.attaqueButton);
         fuiteButton   = (Button) findViewById(R.id.fuiteButton);
         vPowerEnnemis = (TextView) findViewById(R.id.puissance_adverse);
+
+
 
         Intent data = getIntent();
         vPuissance.setText(data.getStringExtra("power"));
@@ -45,6 +50,9 @@ public class FightActivity extends AppCompatActivity {
         attaqueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
+
                 Random rand = new Random();
                 int randj = rand.nextInt(1 - 0 + 1) + 0;
                 rand = new Random();
@@ -94,6 +102,7 @@ public class FightActivity extends AppCompatActivity {
                 intent.putExtra("rLife", vVie.getText().toString());
                 intent.putExtra("rRes", result);
                 intent.putExtra("rNbPiece", nbPiece);
+                intent.putExtra("rIdButton", idButton);
                 setResult(Activity.RESULT_OK,intent);
                 finish();
             }

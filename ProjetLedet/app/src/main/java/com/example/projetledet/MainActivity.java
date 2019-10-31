@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton button15;
     private ImageButton button16;
 
+    private MediaPlayer door;
+    private MediaPlayer fuite;
+    private MediaPlayer slash;
+    private MediaPlayer hurt;
+
     public static final int FIGHT = 1;
 
     // Référencement des puissance aléatoire
@@ -80,15 +86,20 @@ public class MainActivity extends AppCompatActivity {
         nbPiece = (TextView) findViewById(R.id.piece_non_explorer);
         vResPartie = (TextView) findViewById(R.id.res_partie);
 
-        button1 = (ImageButton) findViewById(R.id.room01);
-        button2 = (ImageButton) findViewById(R.id.room02);
-        button3 = (ImageButton) findViewById(R.id.room03);
-        button4 = (ImageButton) findViewById(R.id.room04);
-        button5 = (ImageButton) findViewById(R.id.room05);
-        button6 = (ImageButton) findViewById(R.id.room06);
-        button7 = (ImageButton) findViewById(R.id.room07);
-        button8 = (ImageButton) findViewById(R.id.room08);
-        button9 = (ImageButton) findViewById(R.id.room09);
+        door = MediaPlayer.create(this,R.raw.door);
+        fuite = MediaPlayer.create(this,R.raw.fuite);
+        slash = MediaPlayer.create(this,R.raw.slash);
+        hurt = MediaPlayer.create(this,R.raw.hurt);
+
+        button1  = (ImageButton) findViewById(R.id.room01);
+        button2  = (ImageButton) findViewById(R.id.room02);
+        button3  = (ImageButton) findViewById(R.id.room03);
+        button4  = (ImageButton) findViewById(R.id.room04);
+        button5  = (ImageButton) findViewById(R.id.room05);
+        button6  = (ImageButton) findViewById(R.id.room06);
+        button7  = (ImageButton) findViewById(R.id.room07);
+        button8  = (ImageButton) findViewById(R.id.room08);
+        button9  = (ImageButton) findViewById(R.id.room09);
         button10 = (ImageButton) findViewById(R.id.room10);
         button11 = (ImageButton) findViewById(R.id.room11);
         button12 = (ImageButton) findViewById(R.id.room12);
@@ -111,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
+            door.start();
             String getRoom = getResources().getResourceEntryName(v.getId()); //On récupère le nom de l'ID : room+"i"
             String last = getRoom.substring(4);                  //On récupère le numéro de la pièce: "i"
             int index = Integer.parseInt(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
@@ -152,10 +164,12 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == Activity.RESULT_CANCELED) {
+            fuite.start();
             int vie = Integer.parseInt(vVie.getText().toString());
             vie -= 1;
             vVie.setText(Integer.toString(vie));
             result.setText("Vous avez pris la fuite...");
+            button.setImageResource(R.drawable.icon_monster);
             return;
         }
 
@@ -167,9 +181,18 @@ public class MainActivity extends AppCompatActivity {
             idButton = data.getStringExtra("rIdButton");
 
             if(result.getText().toString().matches("VICTOIRE !!!")){
+                slash.start();
                 button = findViewById(Integer.parseInt(idButton));
                 button.setImageResource(R.drawable.icon_cross);
                 button.setTag("vaincu");
+            }else if(result.getText().toString().matches("Vous avez pris la fuite...")){
+                fuite.start();
+                button = findViewById(Integer.parseInt(idButton));
+                button.setImageResource(R.drawable.icon_monster);
+            }else if(result.getText().toString().matches("DEFAITE...")){
+                hurt.start();
+                button = findViewById(Integer.parseInt(idButton));
+                button.setImageResource(R.drawable.icon_monster);
             }
         }
         checkVictory();
@@ -179,6 +202,8 @@ public class MainActivity extends AppCompatActivity {
         int vie = Integer.parseInt(vVie.getText().toString());
         int piece = Integer.parseInt(nbPiece.getText().toString());
         if(vie <=0){
+            vie=0;
+            vVie.setText(Integer.toString(vie));
             vResPartie.setText("Vous avez perdu la partie.");
         }else if (piece == 0){
             vResPartie.setText("Bravo ! Vous avez gagné !");
