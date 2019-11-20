@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FightActivity">
+    tools:context=".FightActivity"
+    android:background="@drawable/back">
 
 
 
@@ -20,7 +21,8 @@
             android:text="Joueur"
             android:textStyle="bold"
             android:textSize="20dp"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -36,14 +38,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Puissance"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/fpuissance"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/puissance"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -56,14 +60,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Points de vie" />
+                    android:text="Points de vie"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/fvie"
                     android:layout_width="46dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="@string/vie" />
+                    android:text="@string/vie"
+                    android:textColor="@color/black"/>
             </LinearLayout>
 
         </LinearLayout>
@@ -79,27 +85,38 @@
         android:layout_weight="1"
         android:gravity="center">
 
+        <ImageView
+            android:id="@+id/imgMonster"
+            android:layout_width="wrap_content"
+            android:layout_height="250dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_monster"/>
+
         <TextView
+            android:id="@+id/monsterName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Adversaire"
             android:textStyle="bold"
             android:textSize="20dp"
             android:layout_gravity="center"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Puissance"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/puissance_adverse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/puissance_adversaire"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <LinearLayout

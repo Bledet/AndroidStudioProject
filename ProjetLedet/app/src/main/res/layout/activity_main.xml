@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/back">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Maître du Donjon"
+        android:layout_height="50dp"
+        android:src="@drawable/magic"
         android:textStyle="bold"
-        android:textSize="20dp"
+        android:background="@color/transparent"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_weight="1"/>
@@ -253,14 +254,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pièces non explorées :"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/piece_non_explorer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/nb_piece_inex"
                 android:gravity="right"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -270,14 +273,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Puissance :"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/puissance"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/puissance"
                 android:gravity="right"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -287,14 +292,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Points de vie :"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/vie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/vie"
                 android:gravity="right"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:textColor="@color/black"/>
         </LinearLayout>
     </LinearLayout>
     <TextView
@@ -305,6 +312,7 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_weight="1"
+        android:textColor="@color/black"
         android:gravity="center"/>
 
     <TextView
@@ -315,7 +323,8 @@
         android:layout_gravity="center_horizontal"
         android:gravity="center"
         android:text="@string/resultat_combat"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        android:textColor="@color/black"/>
 
 
 </LinearLayout>

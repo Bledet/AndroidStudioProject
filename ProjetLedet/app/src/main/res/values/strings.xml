@@ -22,4 +22,20 @@
     <string name="room14">14</string>
     <string name="room15">15</string>
     <string name="room16">16</string>
+    <string name="monstre01">Augure de Bolas</string>
+    <string name="monstre02">Ayara, Première de Locthwain</string>
+    <string name="monstre03">Boucher de la Horde de l\'effroi</string>
+    <string name="monstre04">Brisesort des Gruul</string>
+    <string name="monstre05">Chupacabra vorace</string>
+    <string name="monstre06">Diable du carnage</string>
+    <string name="monstre07">Chevalier de la légion d\'ébène</string>
+    <string name="monstre08">Façonneur de peste</string>
+    <string name="monstre09">Faucheur de minuit </string>
+    <string name="monstre10">Kefnet l\'Éternel-dieu</string>
+    <string name="monstre11">Roi troll festoyant</string>
+    <string name="monstre12">Ministre d\'obligation</string>
+    <string name="monstre13">Niv-Mizzet, Parun</string>
+    <string name="monstre14">Pyromancienne de Culmefer</string>
+    <string name="monstre15">Bête de Quête</string>
+    <string name="monstre16">Syr Konrad, le Sinistre</string>
 </resources>

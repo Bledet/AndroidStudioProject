@@ -129,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
             Intent intent = new Intent(MainActivity.this, FightActivity.class);
             intent.putExtra("power", vPuissance.getText().toString());
+            intent.putExtra("numPiece", last);
             intent.putExtra("life", vVie.getText().toString());
             intent.putExtra("res", result.getText().toString());
             intent.putExtra("nbPiece", nbPiece.getText().toString());

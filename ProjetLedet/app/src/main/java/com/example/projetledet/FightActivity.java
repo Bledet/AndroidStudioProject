@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -19,7 +20,10 @@ public class FightActivity extends AppCompatActivity {
     private String result;
     private String nbPiece;
     private String idButton;
+    private String numPiece;
     private TextView vPowerEnnemis;
+    private TextView vMonsterName;
+    private ImageView vImgMonster;
 
     private Button attaqueButton;
     private Button fuiteButton;
@@ -36,6 +40,9 @@ public class FightActivity extends AppCompatActivity {
         attaqueButton = (Button) findViewById(R.id.attaqueButton);
         fuiteButton   = (Button) findViewById(R.id.fuiteButton);
         vPowerEnnemis = (TextView) findViewById(R.id.puissance_adverse);
+        vImgMonster   = (ImageView) findViewById(R.id.imgMonster);
+        vMonsterName = (TextView) findViewById(R.id.monsterName);
+
 
 
 
@@ -45,7 +52,18 @@ public class FightActivity extends AppCompatActivity {
         result = data.getStringExtra("res");
         nbPiece = data.getStringExtra("nbPiece");
         idButton = data.getStringExtra("idButton");
+        numPiece = data.getStringExtra("numPiece");
         vPowerEnnemis.setText(data.getStringExtra("powerEnnemis"));
+
+        /* maj du nom de l'adversaire */
+        String idName = "monstre"+numPiece;
+        int id = getResources().getIdentifier(idName, "string", getPackageName());
+        vMonsterName.setText(getString(id));
+
+        /* maj de l'image du monstre */
+        id = getResources().getIdentifier(idName, "drawable", getPackageName());
+        vImgMonster.setImageResource(id);
+
 
         attaqueButton.setOnClickListener(new View.OnClickListener() {
             @Override
