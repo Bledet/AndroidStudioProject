@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class FightActivity extends AppCompatActivity {
     private String nbPiece;
     private String idButton;
     private String numPiece;
+    private String bonus;
     private TextView vPowerEnnemis;
     private TextView vMonsterName;
     private ImageView vImgMonster;
@@ -53,6 +55,7 @@ public class FightActivity extends AppCompatActivity {
         nbPiece = data.getStringExtra("nbPiece");
         idButton = data.getStringExtra("idButton");
         numPiece = data.getStringExtra("numPiece");
+        bonus = data.getStringExtra("bonus");
         vPowerEnnemis.setText(data.getStringExtra("powerEnnemis"));
 
         /* maj du nom de l'adversaire */
@@ -64,6 +67,27 @@ public class FightActivity extends AppCompatActivity {
         id = getResources().getIdentifier(idName, "drawable", getPackageName());
         vImgMonster.setImageResource(id);
 
+
+        /* gestions des bonus */
+        if(bonus.matches("bonus1")){
+            Random rand = new Random();
+            int act = rand.nextInt(3 - 1 + 1) + 1;
+            int vie = Integer.parseInt(vVie.getText().toString());
+            vie += act;
+            vVie.setText(Integer.toString(vie));
+
+            Toast.makeText(FightActivity.this, "Potion de vie: +"+act+" de vie !", Toast.LENGTH_SHORT).show();
+
+        }else if(bonus.matches("bonus2")){
+            Random rand = new Random();
+            int act = rand.nextInt(10 - 5 + 1) + 5;
+            int puissance = Integer.parseInt(vPuissance.getText().toString());
+            puissance += act;
+            vPuissance.setText(Integer.toString(puissance));
+
+            Toast.makeText(FightActivity.this, "Potion de puissance: +"+act+" de puissance !", Toast.LENGTH_SHORT).show();
+
+        }
 
         attaqueButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView nbPiece;
     private TextView vResPartie;
     private String idButton;
+    private String newLife;
+    private String newPower;
 
     private ImageButton button;
     private ImageButton button1;
@@ -54,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int FIGHT = 1;
 
+    int maxPower;
+
+    int numPieceBonus01;
+    int numPieceBonus02;
+    String bonus1;
+    String bonus2;
+    CustomPopup customPopup;
+
     // Référencement des puissance aléatoire
     Vector powerList = new Vector();
 
@@ -61,11 +71,19 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i<16; i++){
 
             Random rand = new Random();
-            int puissance_ennemis = rand.nextInt(150 - 1 + 1) + 1;
+            int puissance_ennemis = rand.nextInt(maxPower - 1 + 1) + 1;
             String power = Integer.toString(puissance_ennemis);
 
             powerList.add(power);
         }
+    }
+
+    private String converion(int n){
+        String s = Integer.toString(n);
+        if(s.length()<2)
+            s = "0"+s;
+
+        return s;
     }
 
     private void reInitList(){
@@ -78,7 +96,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        newLife = "10";
+        newPower = "100";
+        maxPower = 150;
+
         initList();
+
+        /* On choisit les deux pièce qui contiendront des bonus */
+        Random rand = new Random();
+        numPieceBonus01 = rand.nextInt(16 - 1 + 1) + 1;
+        do { //On s'assure que ce soit deux pièces différentes.
+            numPieceBonus02 = rand.nextInt(16 - 1 + 1) + 1;
+        }while (numPieceBonus01 == numPieceBonus02);
+        bonus1 = converion(numPieceBonus01);
+        bonus2 = converion(numPieceBonus02);
+
+        System.out.println(" OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO bonus 1: "+bonus1+" bonus 2: "+bonus2);
 
         vPuissance = (TextView) findViewById(R.id.puissance);
         vVie = (TextView) findViewById(R.id.vie);
@@ -127,6 +160,16 @@ public class MainActivity extends AppCompatActivity {
             String last = getRoom.substring(4);                  //On récupère le numéro de la pièce: "i"
             int index = Integer.parseInt(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
 
+
+            /*Gestion des bonus*/
+            String bonus = "nop";
+            if(last.matches(bonus1)){
+                bonus = "bonus1";
+            }else if (last.matches(bonus2)){
+                bonus = "bonus2";
+            }
+
+
             Intent intent = new Intent(MainActivity.this, FightActivity.class);
             intent.putExtra("power", vPuissance.getText().toString());
             intent.putExtra("numPiece", last);
@@ -134,8 +177,24 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("res", result.getText().toString());
             intent.putExtra("nbPiece", nbPiece.getText().toString());
             intent.putExtra("idButton", Integer.toString(v.getId()));
+            intent.putExtra("bonus", bonus);
             intent.putExtra("powerEnnemis", powerList.get(index).toString()); //On récupère la puissance de l'adversaire dans la powerList
             startActivityForResult(intent, FIGHT);
+    }
+
+    public void validPop(View v){
+        newLife = customPopup.getSetLife().getText().toString();
+        newPower = customPopup.getSetPower().getText().toString();
+        String puissanceMax = customPopup.getSetPowerMax().getText().toString();
+
+        vVie.setText(newLife);
+        vPuissance.setText(newPower);
+        System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVIE et power: "+newLife+"   "+newPower);
+        maxPower = Integer.parseInt(puissanceMax);
+
+        restart();
+
+        customPopup.dismiss();
     }
 
     @Override
@@ -150,10 +209,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.redemarrer:
+                newPower = "100";
+                newLife = "10";
+                maxPower = 150;
                 restart();
                 return true;
             case R.id.quitter:
                 finish();
+                return true;
+            case R.id.parametre:
+                customPopup = new CustomPopup(this);
+                customPopup.build();
                 return true;
             default:
                 return super.onContextItemSelected(item);
@@ -212,8 +278,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restart(){
-        vPuissance.setText("100");
-        vVie.setText("10");
+        vPuissance.setText(newPower);
+        vVie.setText(newLife);
         result.setText("...");
         nbPiece.setText("16");
         vResPartie.setText("Résultat du combat");
