@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
         vVie.setText(newLife);
         vPuissance.setText(newPower);
-        System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVIE et power: "+newLife+"   "+newPower);
+        //System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVIE et power: "+newLife+"   "+newPower);
         maxPower = Integer.parseInt(puissanceMax);
 
         restart();
