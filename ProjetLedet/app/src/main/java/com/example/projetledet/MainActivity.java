@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView nbPiece;
     private TextView vResPartie;
     private TextView vName;
+    private TextView vNiveau;
     private String idButton;
     private String newLife;
     private String newPower;
@@ -121,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
         nbPiece = (TextView) findViewById(R.id.piece_non_explorer);
         vResPartie = (TextView) findViewById(R.id.res_partie);
         vName = (TextView) findViewById(R.id.nom_Joueur);
+        vNiveau = (TextView) findViewById(R.id.niveau);
 
         //door = MediaPlayer.create(this,R.raw.door);
         fuite = MediaPlayer.create(this,R.raw.fuite);
