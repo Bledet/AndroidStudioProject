@@ -1,9 +1,15 @@
 package com.example.projetledet;
 
+import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -58,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
     public static final int FIGHT = 1;
 
     int maxPower;
+    int maxBonus1;
+    int maxBonus2;
+    int minBonus1;
+    int minBonus2;
 
     int numPieceBonus01;
     int numPieceBonus02;
@@ -69,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
     CustomPopupName customPopupName;
 
     boolean parametre = false;
+    boolean nextLevel = false;
 
     // Référencement des puissance aléatoire
     Vector powerList = new Vector();
@@ -105,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
         newLife = "10";
         newPower = "100";
         maxPower = 150;
+        maxBonus1 = 3;
+        maxBonus2 = 10;
+        minBonus1 = 1;
+        minBonus2 = 5;
 
         customPopupName = new CustomPopupName(this);
         customPopupName.build();
@@ -174,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
             if(last.matches(bonus1) && bonus1dispo==true){
                 bonus = "bonus1";
                 Random rand = new Random();
-                act1 = rand.nextInt(3 - 1 + 1) + 1;
+                act1 = rand.nextInt(maxBonus1 - minBonus1 + 1) + minBonus1;
                 int viebonus = Integer.parseInt(vVie.getText().toString());
                 viebonus += act1;
                 vVie.setText(Integer.toString(viebonus));
@@ -182,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             }else if (last.matches(bonus2) && bonus2dispo==true){
                 bonus = "bonus2";
                 Random rand = new Random();
-                act2 = rand.nextInt(10 - 5 + 1) + 5;
+                act2 = rand.nextInt(maxBonus2 - minBonus2 + 1) + minBonus2;
                 int puissancebonus = Integer.parseInt(vPuissance.getText().toString());
                 puissancebonus += act2;
                 vPuissance.setText(Integer.toString(puissancebonus));
@@ -264,6 +279,10 @@ public class MainActivity extends AppCompatActivity {
                 newPower = "100";
                 newLife = "10";
                 maxPower = 150;
+                maxBonus1 = 3;
+                minBonus1 = 1;
+                maxBonus2 = 10;
+                minBonus2 = 5;
                 restart();
                 return true;
             case R.id.quitter:
@@ -286,6 +305,18 @@ public class MainActivity extends AppCompatActivity {
             fuite.start();
             int vie = Integer.parseInt(vVie.getText().toString());
             vie -= 1;
+
+            /* Seuille de vie critique, on la color en rouge */
+            if(vie<=3)
+            {
+                vVie.setTextColor(Color.parseColor("#FF0000"));
+            }
+            /* Seuille de puissance supérieur à l'enemis, on le color en vert */
+            int power = Integer.parseInt(vPuissance.getText().toString());
+            if(power>maxPower)
+            {
+                vPuissance.setTextColor(Color.parseColor("#0FFF00"));
+            }
             vVie.setText(Integer.toString(vie));
             result.setText("Vous avez pris la fuite...");
             button.setImageResource(R.drawable.icon_monster);
@@ -294,10 +325,23 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (requestCode == FIGHT) {
+
             vPuissance.setText(data.getStringExtra("rPower"));
             vVie.setText(data.getStringExtra("rLife"));
             result.setText(data.getStringExtra("rRes"));
             idButton = data.getStringExtra("rIdButton");
+
+            int vie = Integer.parseInt(vVie.getText().toString());
+            if(vie<=3)
+            {
+                vVie.setTextColor(Color.parseColor("#FF0000"));
+            }
+            int power = Integer.parseInt(vPuissance.getText().toString());
+            if(power>maxPower)
+            {
+                vPuissance.setTextColor(Color.parseColor("#0FFF00"));
+            }
+
 
             if(result.getText().toString().matches("VICTOIRE !!!")){
                 slash.start();
@@ -329,7 +373,53 @@ public class MainActivity extends AppCompatActivity {
             vResPartie.setText("Vous avez perdu la partie.");
         }else if (piece == 0){
             vResPartie.setText("Bravo ! Vous avez gagné !");
+            popLevel();
         }
+    }
+
+    private void popLevel(){
+        AlertDialog.Builder myPopup = new AlertDialog.Builder(this);
+        myPopup.setTitle("Bravo !");
+        myPopup.setMessage("Vous avez vaincu tous les boss !\nPasser au niveau suivant ?");
+        myPopup.setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                nextLevel();
+
+                restart();
+            }
+        });
+        myPopup.setNegativeButton("Quitter", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        myPopup.show();
+    }
+
+    private void nextLevel(){
+        int lvl = Integer.parseInt(vNiveau.getText().toString());
+        lvl++;
+        vNiveau.setText(Integer.toString(lvl));
+
+        int var = Integer.parseInt(newPower);
+        var+=50;
+        newPower = Integer.toString(var);
+
+        int var2 = Integer.parseInt(newLife);
+        var2+=5;
+        newLife = Integer.toString(var2);
+
+        maxPower  += 50;
+        maxBonus1 += 3;
+        minBonus1 += 3;
+        maxBonus2 += 5;
+        minBonus2 += 5;
+
+        parametre = true;
+        nextLevel = true;
     }
 
     private void restart(){
@@ -337,8 +427,14 @@ public class MainActivity extends AppCompatActivity {
             customPopupName = new CustomPopupName(this);
             customPopupName.build();
         }
+        if(parametre==false){
+            vNiveau.setText("1");
+        }
+        nextLevel = false;
         parametre = false;
+        vPuissance.setTextColor(Color.parseColor("#000000"));
         vPuissance.setText(newPower);
+        vVie.setTextColor(Color.parseColor("#000000"));
         vVie.setText(newLife);
         result.setText("...");
         nbPiece.setText("16");
