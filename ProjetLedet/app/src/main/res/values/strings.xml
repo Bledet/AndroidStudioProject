@@ -3,6 +3,8 @@
     <string name="nb_piece_inex">16</string>
     <string name="puissance">100</string>
     <string name="vie">10</string>
+    <string name="lvl_joueur">1</string>
+    <string name="Nom_Joueur">Joueur</string>
     <string name="resultat_combat">...</string>
     <string name="puissance_adversaire">Alea 1-150</string>
     <string name="res_partie">Résultat du combat</string>

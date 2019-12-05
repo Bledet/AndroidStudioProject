@@ -11,9 +11,7 @@ import android.view.View;
 
 import android.os.Bundle;
 import android.view.MenuInflater;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,9 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView result;
     private TextView nbPiece;
     private TextView vResPartie;
+    private TextView vName;
     private String idButton;
     private String newLife;
     private String newPower;
+    private String newName;
 
     private ImageButton button;
     private ImageButton button1;
@@ -62,7 +62,12 @@ public class MainActivity extends AppCompatActivity {
     int numPieceBonus02;
     String bonus1;
     String bonus2;
+    boolean bonus1dispo = true;
+    boolean bonus2dispo = true;
     CustomPopup customPopup;
+    CustomPopupName customPopupName;
+
+    boolean parametre = false;
 
     // Référencement des puissance aléatoire
     Vector powerList = new Vector();
@@ -100,26 +105,24 @@ public class MainActivity extends AppCompatActivity {
         newPower = "100";
         maxPower = 150;
 
+        customPopupName = new CustomPopupName(this);
+        customPopupName.build();
+
         initList();
 
         /* On choisit les deux pièce qui contiendront des bonus */
-        Random rand = new Random();
-        numPieceBonus01 = rand.nextInt(16 - 1 + 1) + 1;
-        do { //On s'assure que ce soit deux pièces différentes.
-            numPieceBonus02 = rand.nextInt(16 - 1 + 1) + 1;
-        }while (numPieceBonus01 == numPieceBonus02);
-        bonus1 = converion(numPieceBonus01);
-        bonus2 = converion(numPieceBonus02);
+        initBonus();
 
-        System.out.println(" OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO bonus 1: "+bonus1+" bonus 2: "+bonus2);
+
 
         vPuissance = (TextView) findViewById(R.id.puissance);
         vVie = (TextView) findViewById(R.id.vie);
         result = (TextView) findViewById(R.id.resultat_combat);
         nbPiece = (TextView) findViewById(R.id.piece_non_explorer);
         vResPartie = (TextView) findViewById(R.id.res_partie);
+        vName = (TextView) findViewById(R.id.nom_Joueur);
 
-        door = MediaPlayer.create(this,R.raw.door);
+        //door = MediaPlayer.create(this,R.raw.door);
         fuite = MediaPlayer.create(this,R.raw.fuite);
         slash = MediaPlayer.create(this,R.raw.slash);
         hurt = MediaPlayer.create(this,R.raw.hurt);
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v){
 
             button = findViewById(v.getId());
+
             if(button.getTag() == "vaincu"){
                 Toast.makeText(MainActivity.this, "Boss déjà vaincu !", Toast.LENGTH_SHORT).show();
                 return;
@@ -155,18 +159,32 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            door.start();
+            //door.start();
             String getRoom = getResources().getResourceEntryName(v.getId()); //On récupère le nom de l'ID : room+"i"
             String last = getRoom.substring(4);                  //On récupère le numéro de la pièce: "i"
-            int index = Integer.parseInt(last)-1;                   //On convertit en int et on enlève 1 pour l'adapté au tableau
+            int index = Integer.parseInt(last)-1;                //On convertit en int et on enlève 1 pour l'adapté au tableau
 
 
             /*Gestion des bonus*/
-            String bonus = "nop";
-            if(last.matches(bonus1)){
+            String bonus  = "nop";
+            int act1  = 0;
+            int act2 = 0;
+            if(last.matches(bonus1) && bonus1dispo==true){
                 bonus = "bonus1";
-            }else if (last.matches(bonus2)){
+                Random rand = new Random();
+                act1 = rand.nextInt(3 - 1 + 1) + 1;
+                int viebonus = Integer.parseInt(vVie.getText().toString());
+                viebonus += act1;
+                vVie.setText(Integer.toString(viebonus));
+                bonus1dispo=false;
+            }else if (last.matches(bonus2) && bonus2dispo==true){
                 bonus = "bonus2";
+                Random rand = new Random();
+                act2 = rand.nextInt(10 - 5 + 1) + 5;
+                int puissancebonus = Integer.parseInt(vPuissance.getText().toString());
+                puissancebonus += act2;
+                vPuissance.setText(Integer.toString(puissancebonus));
+                bonus2dispo=false;
             }
 
 
@@ -175,26 +193,58 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("numPiece", last);
             intent.putExtra("life", vVie.getText().toString());
             intent.putExtra("res", result.getText().toString());
-            intent.putExtra("nbPiece", nbPiece.getText().toString());
+            intent.putExtra("bonusvie", Integer.toString(act1));
+            intent.putExtra("bonuspuis", Integer.toString(act2));
             intent.putExtra("idButton", Integer.toString(v.getId()));
             intent.putExtra("bonus", bonus);
             intent.putExtra("powerEnnemis", powerList.get(index).toString()); //On récupère la puissance de l'adversaire dans la powerList
             startActivityForResult(intent, FIGHT);
     }
 
+    private void initBonus(){
+        /* On choisit les deux pièce qui contiendront des bonus */
+        Random rand = new Random();
+        numPieceBonus01 = rand.nextInt(16 - 1 + 1) + 1;
+        do { //On s'assure que ce soit deux pièces différentes.
+            numPieceBonus02 = rand.nextInt(16 - 1 + 1) + 1;
+        }while (numPieceBonus01 == numPieceBonus02);
+        bonus1 = converion(numPieceBonus01);
+        bonus2 = converion(numPieceBonus02);
+    }
+
     public void validPop(View v){
         newLife = customPopup.getSetLife().getText().toString();
         newPower = customPopup.getSetPower().getText().toString();
+        newName = customPopup.getSetNamePop().getText().toString();
         String puissanceMax = customPopup.getSetPowerMax().getText().toString();
 
+        if (newLife.matches("") || newPower.matches("") || newName.matches("") || puissanceMax.matches("")){
+            Toast.makeText(MainActivity.this, "Veuillez remplir tout les champs !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        vName.setText(newName);
         vVie.setText(newLife);
         vPuissance.setText(newPower);
-        //System.out.println("VVVVVVVVVVVVVVVVVVVVVVVVVVVVVVIE et power: "+newLife+"   "+newPower);
         maxPower = Integer.parseInt(puissanceMax);
+
+        parametre = true;
 
         restart();
 
         customPopup.dismiss();
+    }
+
+    public void validPopName(View v){
+        newName = customPopupName.getSetName().getText().toString();
+
+        if(newName.matches("")){
+            Toast.makeText(MainActivity.this, "Veuillez entrez un nom !", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        vName.setText(newName);
+        customPopupName.dismiss();
     }
 
     @Override
@@ -237,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
             vVie.setText(Integer.toString(vie));
             result.setText("Vous avez pris la fuite...");
             button.setImageResource(R.drawable.icon_monster);
+            checkVictory();
             return;
         }
 
@@ -244,18 +295,14 @@ public class MainActivity extends AppCompatActivity {
             vPuissance.setText(data.getStringExtra("rPower"));
             vVie.setText(data.getStringExtra("rLife"));
             result.setText(data.getStringExtra("rRes"));
-            nbPiece.setText(data.getStringExtra("rNbPiece"));
             idButton = data.getStringExtra("rIdButton");
 
             if(result.getText().toString().matches("VICTOIRE !!!")){
                 slash.start();
+                pieceMoins();
                 button = findViewById(Integer.parseInt(idButton));
                 button.setImageResource(R.drawable.icon_cross);
                 button.setTag("vaincu");
-            }else if(result.getText().toString().matches("Vous avez pris la fuite...")){
-                fuite.start();
-                button = findViewById(Integer.parseInt(idButton));
-                button.setImageResource(R.drawable.icon_monster);
             }else if(result.getText().toString().matches("DEFAITE...")){
                 hurt.start();
                 button = findViewById(Integer.parseInt(idButton));
@@ -263,6 +310,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         checkVictory();
+    }
+
+    private void pieceMoins(){
+        int nb = Integer.parseInt(nbPiece.getText().toString());
+        nb--;
+        nbPiece.setText(Integer.toString(nb));
     }
 
     private void checkVictory(){
@@ -278,11 +331,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restart(){
+        if (parametre==false){
+            customPopupName = new CustomPopupName(this);
+            customPopupName.build();
+        }
+        parametre = false;
         vPuissance.setText(newPower);
         vVie.setText(newLife);
         result.setText("...");
         nbPiece.setText("16");
         vResPartie.setText("Résultat du combat");
+        bonus1dispo = true;
+        bonus2dispo = true;
+        initBonus();
 
         reInitList();
         int id = R.drawable.icon_inter;

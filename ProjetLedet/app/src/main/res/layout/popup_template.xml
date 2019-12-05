@@ -54,6 +54,20 @@
         android:gravity="center"
         android:inputType="number"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nom du joueur:"/>
+
+    <EditText
+        android:id="@+id/setNamePop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:gravity="center"
+        android:singleLine="true"/>
+
     <Button
         android:id="@+id/validButton"
         android:layout_width="wrap_content"

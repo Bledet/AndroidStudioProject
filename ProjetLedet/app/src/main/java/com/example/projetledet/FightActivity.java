@@ -19,10 +19,11 @@ public class FightActivity extends AppCompatActivity {
     private TextView vPuissance;
     private TextView vVie;
     private String result;
-    private String nbPiece;
     private String idButton;
     private String numPiece;
     private String bonus;
+    private String viebonus;
+    private String puissancebonus;
     private TextView vPowerEnnemis;
     private TextView vMonsterName;
     private ImageView vImgMonster;
@@ -52,11 +53,12 @@ public class FightActivity extends AppCompatActivity {
         vPuissance.setText(data.getStringExtra("power"));
         vVie.setText(data.getStringExtra("life"));
         result = data.getStringExtra("res");
-        nbPiece = data.getStringExtra("nbPiece");
         idButton = data.getStringExtra("idButton");
         numPiece = data.getStringExtra("numPiece");
         bonus = data.getStringExtra("bonus");
         vPowerEnnemis.setText(data.getStringExtra("powerEnnemis"));
+        viebonus = data.getStringExtra("bonusvie");
+        puissancebonus = data.getStringExtra("bonuspuis");
 
         /* maj du nom de l'adversaire */
         String idName = "monstre"+numPiece;
@@ -70,30 +72,14 @@ public class FightActivity extends AppCompatActivity {
 
         /* gestions des bonus */
         if(bonus.matches("bonus1")){
-            Random rand = new Random();
-            int act = rand.nextInt(3 - 1 + 1) + 1;
-            int vie = Integer.parseInt(vVie.getText().toString());
-            vie += act;
-            vVie.setText(Integer.toString(vie));
-
-            Toast.makeText(FightActivity.this, "Potion de vie: +"+act+" de vie !", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(FightActivity.this, "Potion de vie: +"+viebonus+" de vie !", Toast.LENGTH_SHORT).show();
         }else if(bonus.matches("bonus2")){
-            Random rand = new Random();
-            int act = rand.nextInt(10 - 5 + 1) + 5;
-            int puissance = Integer.parseInt(vPuissance.getText().toString());
-            puissance += act;
-            vPuissance.setText(Integer.toString(puissance));
-
-            Toast.makeText(FightActivity.this, "Potion de puissance: +"+act+" de puissance !", Toast.LENGTH_SHORT).show();
-
+            Toast.makeText(FightActivity.this, "Potion de puissance: +"+puissancebonus+" de puissance !", Toast.LENGTH_SHORT).show();
         }
 
         attaqueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
 
                 Random rand = new Random();
                 int randj = rand.nextInt(1 - 0 + 1) + 0;
@@ -105,10 +91,6 @@ public class FightActivity extends AppCompatActivity {
                     int puissance = Integer.parseInt(vPuissance.getText().toString());
                     puissance += 10;
                     vPuissance.setText(Integer.toString(puissance));
-
-                    int nb = Integer.parseInt(nbPiece);
-                    nb -= 1;
-                    nbPiece = Integer.toString(nb);
 
                 }else{ //Cas de défaite
 
@@ -123,7 +105,6 @@ public class FightActivity extends AppCompatActivity {
                 intent.putExtra("rPower", vPuissance.getText().toString());
                 intent.putExtra("rLife", vVie.getText().toString());
                 intent.putExtra("rRes", result);
-                intent.putExtra("rNbPiece", nbPiece);
                 intent.putExtra("rIdButton", idButton);
                 setResult(Activity.RESULT_OK,intent);
                 finish();
@@ -134,18 +115,9 @@ public class FightActivity extends AppCompatActivity {
         fuiteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int vie = Integer.parseInt(vVie.getText().toString());
-                vie -= 1;
-                vVie.setText(Integer.toString(vie));
-                result = "Vous avez pris la fuite...";
-
                 Intent intent = new Intent(FightActivity.this, MainActivity.class);
-                intent.putExtra("rPower", vPuissance.getText().toString());
-                intent.putExtra("rLife", vVie.getText().toString());
-                intent.putExtra("rRes", result);
-                intent.putExtra("rNbPiece", nbPiece);
-                intent.putExtra("rIdButton", idButton);
-                setResult(Activity.RESULT_OK,intent);
+
+                setResult(Activity.RESULT_CANCELED,intent);
                 finish();
             }
         });
